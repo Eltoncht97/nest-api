@@ -14,59 +14,93 @@ import { User } from '../../auth/entities/user.entity';
 
 @Entity({ name: 'products' })
 export class Product {
-
-  @ApiProperty()
+  @ApiProperty({
+    example: '1cae3ac7-d19f-4d84-b747-2c82d35d7c35',
+    description: 'Product ID',
+    uniqueItems: true,
+  })
   @PrimaryGeneratedColumn('uuid')
   id: string;
-  
-  @ApiProperty()
+
+  @ApiProperty({
+    example: 'T-Shirt teslo',
+    description: 'Product Title',
+    uniqueItems: true,
+  })
   @Column('text', {
     unique: true,
   })
   title: string;
-  
-  @ApiProperty()
+
+  @ApiProperty({
+    example: 0,
+    description: 'Product price',
+  })
   @Column('float', {
     default: 0,
   })
   price: number;
-  
-  @ApiProperty()
+
+  @ApiProperty({
+    example: 'Anim reprehenderit nulla in anim mollit minim irure commodo.',
+    description: 'Product Description',
+    default: null,
+  })
   @Column('text', {
     nullable: true,
   })
   description: string;
-  
-  @ApiProperty()
+
+  @ApiProperty({
+    example: 't_shirt_teslo',
+    description: 'Product SLUG - for SEO routes',
+    uniqueItems: true,
+  })
   @Column('text', {
     unique: true,
   })
   slug: string;
-  
-  @ApiProperty()
+
+  @ApiProperty({
+    example: 10,
+    description: 'Product stock',
+    default: 0,
+  })
   @Column('int', {
     default: 0,
   })
   stock: number;
-  
-  @ApiProperty()
+
+  @ApiProperty({
+    example: ['M', 'L', 'XL'],
+    description: 'Product sizes',
+  })
   @Column('text', {
     array: true,
   })
   sizes: string[];
-  
-  @ApiProperty()
+
+  @ApiProperty({
+    example: 'women',
+    description: 'Product gender'
+  })
   @Column('text')
   gender: string;
-  
-  @ApiProperty()
+
+  @ApiProperty({
+    example: ['shirts', 'red', 'yellow'],
+    description: 'Product Tags',
+  })
   @Column('text', {
     array: true,
     default: [],
   })
   tags: string[];
-  
-  @ApiProperty()
+
+  @ApiProperty({
+    example: ['https://image1.com', 'https://image2.com'],
+    description: 'Product Images',
+  })
   @OneToMany(() => ProductImage, (productImage) => productImage.product, {
     cascade: true,
     eager: true,
