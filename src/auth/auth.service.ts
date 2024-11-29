@@ -4,9 +4,10 @@ import {
   InternalServerErrorException,
   UnauthorizedException,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
 import * as bcrypt from 'bcrypt';
 
 import { User } from './entities/user.entity';
@@ -18,6 +19,7 @@ export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+
     private readonly jwtService: JwtService,
   ) {}
 
@@ -31,8 +33,8 @@ export class AuthService {
       });
 
       await this.userRepository.save(user);
-
       delete user.password;
+
       return { ...user, token: this.getJwtToken({ id: user.id }) };
     } catch (error) {
       this.handleDBErrors(error);
