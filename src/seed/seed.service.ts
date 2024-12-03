@@ -40,8 +40,6 @@ export class SeedService {
   }
 
   private async insertNewProducts(user: User) {
-    // await this.productService.deleteAllProducts();
-
     const products = initialData.products;
 
     const insertPromises = [];

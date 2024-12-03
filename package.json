@@ -1,12 +1,12 @@
 {
-  "name": "teslo-shop",
+  "name": "factory-api",
   "version": "0.0.1",
   "description": "",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "scripts": {
     "build": "nest build",
